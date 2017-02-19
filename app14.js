@@ -2,12 +2,15 @@
 const express =require('express');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const sessionFileStore = require('session-file-store')(session);
 
 const app = express();
 
 app.use(cookieParser());
 app.use(session({
-	secret:'seseeyoul'
+	store:new sessionFileStore(), //服务器重开有效，session文件存储。
+	cookie:{maxAge:20000},//设置cookie存在的时间，关闭之后20000ms之内依然存在。浏览器关闭重新打开有效
+	secret:'seseeyoul'  //加密字段，随意设置
 }));
 
 
