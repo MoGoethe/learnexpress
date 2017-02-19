@@ -3,18 +3,19 @@
 const express = require('express');
 const multer = require('multer');
 
-const upload = multer({ dest: 'myfiles' })
 const app =express();
 
 app.use(express.static('public2'));
+
+const upload = multer({ dest: 'myfiles' })
 
 //app.use(upload.single('name2'));
 app.use(upload.array('name2'));
 
 app.post('/upload',(req,res)=>{
 	console.log(req.body);
-	console.log(req.files);
 	//console.log(req.files);
+	console.log(req.files);
 	res.redirect('/');
 })
 
