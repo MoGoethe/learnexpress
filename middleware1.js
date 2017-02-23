@@ -6,11 +6,12 @@ const app = express();
 
 let status = '';
 function getstatus(req, res, next) {
-	 status =  req.method;
-	next();
+	status =  req.method;
+	next('a');
 };
 
-app.get('/',getstatus,(req,res)=>{
+app.get('/',getstatus,(result,req,res)=>{
+	console.log(status);
 	res.send(status);
 })
 
